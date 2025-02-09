@@ -1,0 +1,31 @@
+# Define the compiler
+CC = gcc
+
+# Define the compiler flags
+CFLAGS = -Wall -Wextra -std=c11
+
+# Define the linker flags
+LDFLAGS =
+
+# Define the source files
+SRC = Circle.c Testdriver.c
+
+# Define the object files
+OBJ = $(SRC:.c=.o)
+
+# Define the name of the executable
+EXEC = ex
+
+# Rule to build the executable
+$(EXEC): $(OBJ)
+	$(CC) $(LDFLAGS) -o $(EXEC) $(OBJ)
+
+# Rule to build the object files
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Rule to clean up build artifacts
+clean:
+	rm -f $(OBJ) $(EXEC)
+
+.PHONY: clean
